@@ -7,10 +7,9 @@ const KakaoMap = () => {
   const getCurrentLocation = () => {
     let gpsOptions = {
       enableHighAccuracy: true,
-      timeout: 5000,
     };
     return new Promise((resolve, rejected) => {
-      navigator.geolocation.getCurrentPosition(resolve, rejected);
+      navigator.geolocation.getCurrentPosition(resolve, rejected, gpsOptions);
     });
   };
 
@@ -22,7 +21,6 @@ const KakaoMap = () => {
     const drawMap = async () => {
       try {
         let position = await getCurrentLocation();
-
         let lat = position.coords.latitude;
         let log = position.coords.longitude;
 
@@ -31,7 +29,7 @@ const KakaoMap = () => {
         let centerPoint = new window.kakao.maps.LatLng(lat, log);
         const options = {
           center: centerPoint,
-          level: 3,
+          level: 4,
         };
         new window.kakao.maps.Map(kakaoMapRef.current, options);
       } catch (error) {
