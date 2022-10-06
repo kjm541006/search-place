@@ -7,6 +7,7 @@ const KakaoMap = () => {
   const getCurrentLocation = () => {
     let gpsOptions = {
       enableHighAccuracy: true,
+      timeout: 7000,
     };
     return new Promise((resolve, rejected) => {
       navigator.geolocation.getCurrentPosition(resolve, rejected, gpsOptions);
